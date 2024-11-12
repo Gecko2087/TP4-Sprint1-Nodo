@@ -11,9 +11,16 @@ export function obtenerSuperheroePorId(id) {
 
 export function buscarSuperheroesPorAtributo(atributo, valor){
     const superheroes=repository.obtenerTodos();
+
     
-    return superheroes.filter(hero=>     
-        hero[atributo].toLowerCase()===(valor.toLowerCase())
+    return superheroes.filter(hero=> {
+        if (!isNaN(valor)) {
+            return hero[atributo] === Number(valor);
+        } else {	
+            hero[atributo].toLowerCase()===(valor.toLowerCase());
+        }
+    }
+        
     );
 }
 
